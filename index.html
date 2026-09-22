@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPCJ ESCAPE — Isto é Amor?</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#0b1220;
+  color:#f3f4f6;
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.5;
+}
+.app{
+  max-width:760px;
+  margin:auto;
+  padding:20px;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:15px;
+}
+.brand{
+  font-size:12px;
+  letter-spacing:3px;
+  color:#a7b0bf;
+}
+h1{margin:3px 0;font-size:28px}
+h2{font-size:25px;margin-top:5px}
+h3{font-size:20px}
+.timer{
+  background:#182334;
+  border:1px solid #374151;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:bold;
+  font-size:20px;
+  min-width:78px;
+  text-align:center;
+}
+.progress{
+  height:7px;
+  background:#273244;
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+.progress span{
+  display:block;
+  height:100%;
+  width:100%;
+  background:#86efac;
+}
+.card{
+  background:#151f2e;
+  border:1px solid #334155;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:15px;
+}
+.confidential{
+  color:#a7b0bf;
+  font-family:monospace;
+  letter-spacing:1px;
+}
+.quote{
+  font-size:20px;
+  font-weight:bold;
+  margin:18px 0;
+}
+button{
+  width:100%;
+  min-height:48px;
+  margin-top:10px;
+  padding:12px 15px;
+  border-radius:12px;
+  border:1px solid #475569;
+  background:#253247;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{border-color:#86efac}
+.primary{
+  background:#166534;
+  border-color:#86efac;
+}
+.case-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.case{
+  text-align:left;
+  min-height:170px;
+}
+.case small{
+  color:#a7b0bf;
+  font-family:monospace;
+}
+.message{
+  background:#0e1725;
+  border:1px solid #374151;
+  padding:11px 13px;
+  border-radius:12px;
+  margin:8px 0;
+}
+.phone{
+  background:#080e18;
+  border:1px solid #475569;
+  border-radius:20px;
+  padding:15px;
+}
+.apps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.apps button{
+  margin:0;
+  font-size:14px;
+}
+.clues{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:15px;
+}
+.clue{
+  background:#263244;
+  border:1px solid #4b5563;
+  padding:6px 10px;
+  border-radius:30px;
+  font-size:13px;
+}
+.success{
+  background:#12351f;
+  border-color:#4ade80;
+}
+.error{
+  background:#3a2020;
+  border-color:#f87171;
+}
+.hidden{display:none}
+.big-word{
+  font-size:42px;
+  letter-spacing:7px;
+  font-weight:900;
+  color:#86efac;
+}
+.center{text-align:center}
+@media(max-width:600px){
+  .app{padding:14px}
+  .case-grid{grid-template-columns:1fr}
+  .apps{grid-template-columns:repeat(2,1fr)}
+  h1{font-size:24px}
+  .big-word{font-size:32px}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<header class="header">
+  <div>
+    <div class="brand">CPCJ DE ALCOCHETE</div>
+    <h1>CPCJ ESCAPE</h1>
+  </div>
+  <div id="timer" class="timer hidden">10:00</div>
+</header>
+
+<div id="progress" class="progress hidden">
+  <span id="progressBar"></span>
+</div>
+
+<section id="intro">
+  <div class="card">
+    <div class="confidential">FICHEIRO CONFIDENCIAL</div>
+    <h2>ISTO É AMOR?</h2>
+    <p>Uma investigação sobre relações, limites e escolhas.</p>
+
+    <p>
+      Uma pessoa pediu ajuda. Depois desistiu.
+      Antes de sair, deixou uma mensagem:
+    </p>
+
+    <div class="quote">
+      “Se ele descobrir que falei, vai ficar pior.”
+    </div>
+
+    <p>
+      A mensagem foi apagada.
+      Vocês têm <strong>10 minutos</strong> para descobrir o que aconteceu.
+    </p>
+
+    <p>
+      Não procurem apenas aquilo que parece errado.
+      Procurem aquilo que foi sendo <strong>normalizado</strong>.
+    </p>
+  </div>
+
+  <div class="card">
+    <strong>MISSÃO</strong>
+    <p>
+      Analisem mensagens, comportamentos e decisões.
+      Recolham as pistas.
+      No final terão de descobrir uma palavra.
+    </p>
+  </div>
+
+  <button id="start" class="primary">ACEITAR A MISSÃO →</button>
+</section>
+
+<section id="cases" class="hidden">
+  <div class="card">
+    <h2>ESCOLHAM O FICHEIRO</h2>
+    <p>
+      Existem dois casos. Ambos falam de relações, limites e respeito.
+      Escolham um.
+    </p>
+  </div>
+
+  <div class="case-grid">
+
+    <button class="case" data-case="017">
+      <small>CASO 017</small>
+      <h3>Marta & Diogo</h3>
+      <p>“Se ele descobrir que falei, vai ficar pior.”</p>
+    </button>
+
+    <button class="case" data-case="018">
+      <small>CASO 018</small>
+      <h3>Rui & Leonor</h3>
+      <p>“O meu telemóvel continua a ser meu.”</p>
+    </button>
+
+  </div>
+</section>
+
+<section id="game" class="hidden">
+  <div id="content"></div>
+  <div id="feedback"></div>
+  <div id="clues" class="clues"></div>
+</section>
+
+<section id="final" class="hidden">
+
+  <div class="card center">
+    <div class="confidential">FICHEIRO DESBLOQUEADO</div>
+    <h2>MISSÃO CONCLUÍDA</h2>
+
+    <p>A palavra final é:</p>
+
+    <div class="big-word">RESPEITO</div>
+
+    <p>
+      Uma relação saudável precisa de respeito pelos
+      <strong>limites, privacidade, amizades, liberdade e escolhas.</strong>
+    </p>
+
+    <p>
+      Amar alguém não significa ter poder sobre essa pessoa.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>GUARDEM ESTAS PISTAS</h3>
+
+    <p>❤️ Ciúme não é prova de amor.</p>
+    <p>🔒 Controlo não é cuidado.</p>
+    <p>⚠️ Pressão não é respeito.</p>
+    <p>🛑 Violência não é apenas agressão física.</p>
+  </div>
+
+  <div class="card center">
+    <strong>A tua voz conta.</strong>
+    <p>CPCJ de Alcochete</p>
+  </div>
+
+  <button id="again" class="primary">
+    JOGAR OUTRO CASO ↻
+  </button>
+
+</section>
+
+</div>
+
+<script>
+
+const cases = {
+
+"017":[
+
+{
+title:"CASO 017 · A MENSAGEM APAGADA",
+html:`
+<div class="card">
+<div class="confidential">08:43 · PEDIDO DE AJUDA</div>
+<p>
+Uma aluna pediu ajuda. Depois desistiu.
+Antes de sair, deixou uma mensagem:
+</p>
+<div class="quote">
+“Se ele descobrir que falei, vai ficar pior.”
+</div>
+<p>
+Abram os separadores. Há pistas escondidas.
+</p>
+</div>
+
+<div class="phone">
+
+<div class="apps">
+<button onclick="phoneInfo('mensagens')">📩 Mensagens</button>
+<button onclick="phoneInfo('localizacao')">📍 Localização</button>
+<button onclick="phoneInfo('fotografias')">📸 Fotografias</button>
+<button onclick="phoneInfo('audios')">🎙️ Áudios</button>
+<button onclick="phoneInfo('grupo')">👥 Grupo</button>
+<button onclick="phoneInfo('notas')">📝 Notas</button>
+</div>
+
+<div id="phoneInfo" class="card" style="margin-top:12px">
+Escolham um separador para investigar.
+</div>
+
+</div>
+
+<button class="primary" onclick="nextStep()">
+ABRIR A PRIMEIRA PISTA →
+</button>
+`
+},
+
+{
+title:"PISTA 1 · PREOCUPAÇÃO OU CONTROLO?",
+html:`
+<div class="card">
+
+<div class="message">Diogo: Já chegaste?</div>
+<div class="message">Diogo: Com quem estás?</div>
+<div class="message">Diogo: Porque demoraste tanto a responder?</div>
+<div class="message">Diogo: Manda localização.</div>
+
+<p>
+Qual é o conceito que melhor descreve este conjunto de comportamentos?
+</p>
+
+</div>
+`,
+choices:["PREOCUPAÇÃO","CONTROLO","CARINHO","CONFIANÇA"],
+correct:1,
+clue:"CONTROLO"
+},
+
+{
+title:"PISTA 2 · “SE GOSTASSES DE MIM…”",
+html:`
+<div class="card">
+
+<div class="message">Marta: Hoje vou sair com a Inês.</div>
+<div class="message">Diogo: Só vocês as duas?</div>
+<div class="message">Marta: Sim.</div>
+<div class="message">Diogo: Se aquele rapaz estiver lá, não vás.</div>
+<div class="message">Marta: Não podes decidir com quem eu saio.</div>
+<div class="message">Diogo: Se gostasses mesmo de mim, não ias.</div>
+
+</div>
+
+<p>
+O que está a acontecer?
+</p>
+`,
+choices:["CONVITE","PRESSÃO","NEGOCIAÇÃO","BRINCADEIRA"],
+correct:1,
+clue:"PRESSÃO"
+},
+
+{
+title:"PISTA 3 · A FOTOGRAFIA",
+html:`
+<div class="card">
+
+<div class="message">
+Marta: Não partilhes esta fotografia, por favor.
+</div>
+
+<div class="message">
+Diogo: Claro ❤️
+</div>
+
+<div class="message">
+— duas horas depois —
+</div>
+
+<div class="message">
+Grupo “10.º B” · Diogo publicou a fotografia.
+</div>
+
+</div>
+
+<p>
+Que princípio foi ultrapassado?
+</p>
+`,
+choices:[
+"POPULARIDADE",
+"LIMITES E CONSENTIMENTO",
+"HUMOR",
+"AMIZADE"
+],
+correct:1,
+clue:"LIMITES"
+},
+
+{
+title:"PISTA 4 · QUANDO O GRUPO NORMALIZA",
+html:`
+<div class="card">
+
+<div class="message">
+Inês: Ele é assim porque gosta muito dela.
+</div>
+
+<div class="message">
+João: Ela também sabe que ele é ciumento.
+</div>
+
+<div class="message">
+Sofia: Ela disse que não queria a fotografia partilhada.
+Ele devia respeitar.
+</div>
+
+</div>
+
+<p>
+Qual destas frases ajuda a <strong>normalizar</strong> um comportamento inadequado?
+</p>
+`,
+choices:[
+"Ele é assim porque gosta muito dela.",
+"Ela disse que não queria a fotografia.",
+"Ele devia respeitar."
+],
+correct:0,
+clue:"NORMALIZAÇÃO"
+},
+
+{
+title:"PISTA 5 · “ELE NUNCA ME BATEU”",
+html:`
+<div class="card">
+<div class="quote">
+“Ele nunca me bateu. Por isso acho que não é violência.”
+</div>
+<p>
+Esta conclusão está correta?
+</p>
+</div>
+`,
+choices:[
+"SIM — violência é apenas física.",
+"NÃO — pode existir violência sem agressão física."
+],
+correct:1,
+clue:"VIOLÊNCIA"
+}
+
+],
+
+"018":[
+
+{
+title:"CASO 018 · O TELEMÓVEL",
+html:`
+<div class="card">
+
+<div class="confidential">09:12 · NOTA DE RUI</div>
+
+<p>
+“Ela diz que é só porque gosta muito de mim.
+Mas se eu não responder logo, começa a perguntar onde estou e com quem estou.”
+</p>
+
+<p>
+Abram os separadores e procurem a primeira pista.
+</p>
+
+</div>
+
+<div class="phone">
+
+<div class="apps">
+<button onclick="phoneInfo('mensagens')">📩 Mensagens</button>
+<button onclick="phoneInfo('localizacao')">📍 Localização</button>
+<button onclick="phoneInfo('fotografias')">📸 Fotografias</button>
+<button onclick="phoneInfo('audios')">🎙️ Áudios</button>
+<button onclick="phoneInfo('grupo')">👥 Grupo</button>
+<button onclick="phoneInfo('notas')">📝 Notas</button>
+</div>
+
+<div id="phoneInfo" class="card" style="margin-top:12px">
+Há informação que parece “normal”.
+É mesmo?
+</div>
+
+</div>
+
+<button class="primary" onclick="nextStep()">
+ABRIR A PRIMEIRA PISTA →
+</button>
+`
+},
+
+{
+title:"PISTA 1 · NOTIFICAÇÕES",
+html:`
+<div class="card">
+
+<div class="message">Leonor: Onde estás?</div>
+<div class="message">Leonor: Quem está contigo?</div>
+<div class="message">Leonor: Envia foto.</div>
+<div class="message">Leonor: Porque não respondeste?</div>
+
+</div>
+
+<p>
+Qual é o conceito que melhor descreve este padrão?
+</p>
+`,
+choices:["CONTROLO","CONFIANÇA","CUIDADO","PARTILHA"],
+correct:0,
+clue:"CONTROLO"
+},
+
+{
+title:"PISTA 2 · O JOGO DE FUTEBOL",
+html:`
+<div class="card">
+
+<div class="message">Rui: Hoje vou jogar futebol.</div>
+<div class="message">Leonor: Outra vez?</div>
+<div class="message">Rui: É só uma hora.</div>
+<div class="message">Leonor: Se gostasses mesmo de mim, ficavas comigo.</div>
+
+</div>
+
+<p>
+Que comportamento reconhecem?
+</p>
+`,
+choices:[
+"PRESSÃO / MANIPULAÇÃO",
+"NEGOCIAÇÃO",
+"CUIDADO",
+"CONFIANÇA"
+],
+correct:0,
+clue:"PRESSÃO"
+},
+
+{
+title:"PISTA 3 · A NOTA DE RUI",
+html:`
+<div class="card">
+
+<p>
+“Uma relação saudável precisa de espaço para existir.
+O meu telemóvel continua a ser meu.
+As minhas amizades continuam a ser minhas.
+Dizer não não significa deixar de gostar.”
+</p>
+
+</div>
+
+<p>
+Que princípio está aqui presente?
+</p>
+`,
+choices:[
+"PRIVACIDADE E LIMITES",
+"OBRIGAÇÃO",
+"VIGILÂNCIA",
+"DEPENDÊNCIA"
+],
+correct:0,
+clue:"LIMITES"
+},
+
+{
+title:"PISTA 4 · “SE NÃO TENS NADA A ESCONDER…”",
+html:`
+<div class="card">
+
+<div class="message">
+“Isso é normal numa relação.”
+</div>
+
+<div class="message">
+“Se não tens nada a esconder, mostra o telemóvel.”
+</div>
+
+<div class="message">
+“Ter uma relação não significa perder a privacidade.”
+</div>
+
+</div>
+
+<p>
+Qual destas frases mostra <strong>normalização</strong> de um comportamento inadequado?
+</p>
+`,
+choices:[
+"Isso é normal numa relação.",
+"Ter uma relação não significa perder a privacidade."
+],
+correct:0,
+clue:"NORMALIZAÇÃO"
+},
+
+{
+title:"PISTA 5 · NÃO HOUVE AGRESSÃO FÍSICA",
+html:`
+<div class="card">
+
+<p>
+Rui não foi agredido fisicamente.
+Mas existem controlo, pressão, invasão da privacidade
+e desrespeito pelos limites.
+</p>
+
+<p>
+Pode isto fazer parte de uma situação de violência no namoro?
+</p>
+
+</div>
+`,
+choices:["SIM","NÃO"],
+correct:0,
+clue:"VIOLÊNCIA"
+}
+
+]
+
+};
+
+let currentCase="";
+let step=0;
+let clues=[];
+let seconds=600;
+let timerInterval=null;
+
+const intro=document.getElementById("intro");
+const caseScreen=document.getElementById("cases");
+const game=document.getElementById("game");
+const finalScreen=document.getElementById("final");
+const content=document.getElementById("content");
+const feedback=document.getElementById("feedback");
+const clueBox=document.getElementById("clues");
+const timer=document.getElementById("timer");
+const progress=document.getElementById("progress");
+const progressBar=document.getElementById("progressBar");
+
+document.getElementById("start").onclick=function(){
+
+intro.classList.add("hidden");
+caseScreen.classList.remove("hidden");
+timer.classList.remove("hidden");
+progress.classList.remove("hidden");
+
+};
+
+document.querySelectorAll("[data-case]").forEach(button=>{
+
+button.onclick=function(){
+
+currentCase=this.dataset.case;
+step=0;
+clues=[];
+seconds=600;
+
+caseScreen.classList.add("hidden");
+game.classList.remove("hidden");
+
+startTimer();
+renderStep();
+
+};
+
+});
+
+function startTimer(){
+
+clearInterval(timerInterval);
+
+timerInterval=setInterval(function(){
+
+seconds--;
+
+if(seconds<=0){
+
+seconds=0;
+clearInterval(timerInterval);
+
+content.innerHTML=`
+<div class="card error">
+<h2>TEMPO ESGOTADO</h2>
+<p>
+A investigação terminou antes de reunirem todas as pistas.
+</p>
+<button onclick="location.reload()" class="primary">
+RECOMEÇAR
+</button>
+</div>
+`;
+
+feedback.innerHTML="";
+return;
+
+}
+
+updateTimer();
+
+},1000);
+
+updateTimer();
+
+}
+
+function updateTimer(){
+
+let min=Math.floor(seconds/60);
+let sec=seconds%60;
+
+timer.textContent=
+min+":"+String(sec).padStart(2,"0");
+
+progressBar.style.width=
+(seconds/600*100)+"%";
+
+}
+
+function renderStep(){
+
+let item=cases[currentCase][step];
+
+feedback.innerHTML="";
+
+content.innerHTML=`
+<h2>${item.title}</h2>
+${item.html}
+`;
+
+if(item.choices){
+
+let choices=document.createElement("div");
+
+item.choices.forEach((choice,index)=>{
+
+let button=document.createElement("button");
+
+button.textContent=choice;
+
+button.onclick=function(){
+
+answer(index,item);
+
+};
+
+choices.appendChild(button);
+
+});
+
+content.appendChild(choices);
+
+}
+
+updateClues();
+
+}
+
+function answer(index,item){
+
+if(index===item.correct){
+
+if(!clues.includes(item.clue)){
+clues.push(item.clue);
+}
+
+feedback.innerHTML=`
+<div class="card success">
+<strong>PISTA DESBLOQUEADA ✓</strong>
+<p>
+A palavra encontrada é:
+<strong>${item.clue}</strong>
+</p>
+<button class="primary" onclick="nextStep()">
+CONTINUAR →
+</button>
+</div>
+`;
+
+updateClues();
+
+}else{
+
+feedback.innerHTML=`
+<div class="card error">
+<strong>ACESSO NEGADO</strong>
+<p>
+Essa interpretação não explica todas as pistas.
+Voltem a analisar.
+</p>
+</div>
+`;
+
+}
+
+}
+
+function nextStep(){
+
+step++;
+
+if(step>=cases[currentCase].length){
+
+finish();
+
+}else{
+
+renderStep();
+
+}
+
+}
+
+function updateClues(){
+
+clueBox.innerHTML="";
+
+clues.forEach(clue=>{
+
+let span=document.createElement("span");
+
+span.className="clue";
+span.textContent="🔓 "+clue;
+
+clueBox.appendChild(span);
+
+});
+
+}
+
+function finish(){
+
+clearInterval(timerInterval);
+
+game.classList.add("hidden");
+progress.classList.add("hidden");
+timer.classList.add("hidden");
+
+finalScreen.classList.remove("hidden");
+
+}
+
+document.getElementById("again").onclick=function(){
+
+finalScreen.classList.add("hidden");
+caseScreen.classList.remove("hidden");
+
+timer.classList.remove("hidden");
+progress.classList.remove("hidden");
+
+};
+
+function phoneInfo(type){
+
+const info=document.getElementById("phoneInfo");
+
+const texts={
+
+mensagens:
+"Há mensagens que parecem banais. O contexto é a pista.",
+
+localizacao:
+"Pedir localização pode ser uma escolha livre — ou transformar-se em vigilância.",
+
+fotografias:
+"Uma fotografia partilhada sem autorização merece atenção.",
+
+audios:
+"Nem tudo o que parece preocupação é cuidado. Escutem o contexto.",
+
+grupo:
+"Os amigos também podem normalizar comportamentos.",
+
+notas:
+"Uma frase pode revelar um limite que alguém está a tentar defender."
+
+};
+
+info.innerHTML="<strong>PISTA:</strong><br>"+texts[type];
+
+}
+
+</script>
+
+</body>
+</html>
